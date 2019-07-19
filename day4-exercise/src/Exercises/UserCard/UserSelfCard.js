@@ -1,38 +1,29 @@
 import React from 'react';
+import classnames from 'classnames';
+import styles from './UserSelfCard.module.scss';
 
-const UserSelfCard = ({ user }) => {
-  //return null;
-   console.log (user);
-   
- return (
-   
-   <div className="Container">
-     <div className="row">
-   <div className="card">
- <div className="faceparent">
-   <div className="faceContainer"> 
-     <img src={user.image} className="face"/>
-     </div>
-     <div className="faceName">
-       <div>
-<strong>{user.name}</strong>
-       </div>
-       <div >
-         <strong>{user.surName}</strong>
-
-       </div>
-     </div>
-     
- </div>
- <div className="footer">
- {user.gender}.{user.age}
- </div>
- </div>
- </div>
-
-
- </div>);
- 
+const UserSelfCard = ({ user, secondary = false, hoverable = false }) => {
+  return (
+    <div className={styles.container}>
+      <div
+        className={classnames(styles.card, styles.selfCard, {
+          [styles.secondary]: secondary,
+          [styles.hoverable]: hoverable
+        })}>
+        <img className={styles.image} src={user.image} />
+        <div className={styles.imageDescription}>
+          <p>{user.name}</p>
+          <p>{user.surName}</p>
+        </div>
+        <div className={styles.details}>
+          <span>{user.gender}</span>
+          <span className={styles.bullet} />
+          <span>{user.age}</span>
+        </div>
+      </div>
+    </div>
+  );
+  return null;
 };
 
 export default UserSelfCard;
